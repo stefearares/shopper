@@ -6,7 +6,7 @@
 
 ## How to Run / About
 
-_This project uses Madge for circular dependency checking._
+_This project uses [Madge](https://www.npmjs.com/package/madge) for circular dependency checking._
 
 ## General TODOs
 
