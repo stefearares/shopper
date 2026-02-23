@@ -1,0 +1,114 @@
+.landingWrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    padding: 6rem;
+    color: var(--text);
+    background: var(--background);
+}
+
+.landingRightSide {
+    border-radius: 25px;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    background: var(--surface-solid);
+    box-shadow: var(--shadow-lg);
+}
+
+
+.landingHeader {
+    text-align: center;
+    margin: 0 0 2rem 0;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    line-height: 1.5;
+}
+
+.landingParagraph {
+    margin: 0 0 2rem 0;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 42rem;
+}
+
+.landingButtonWrapper {
+    justify-content: center;
+    display: flex;
+    gap: 2rem;
+
+}
+
+
+.landingButtonWrapper button {
+    background: transparent;
+    border: 2px solid var(--brand-color);
+    border-radius: 999px;
+    color: var(--brand-color);
+    padding: 1rem 2rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+}
+
+.landingButtonWrapper button:hover {
+    background-color: var(--brand-color);
+    color: var(--surface-solid);
+}
+
+.landingButtonWrapper button:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+.landingButtonWrapper button:active {
+    transform: translateY(1px);
+}
+
+.heroImg {
+    width: 100%;
+    height: auto;
+    max-width: 42rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    background: var(--surface-solid);
+    object-fit: cover;
+}
+
+@media (max-width: 1025px) {
+    .landingWrapper {
+        flex-direction: column;
+        padding: 2.5rem 1.5rem;
+        gap: 2rem;
+    }
+
+    .landingHero {
+        width: auto;
+        justify-content: center;
+        order: -1;
+    }
+
+    .landingRightSide {
+        width: auto;
+    }
+
+    .landingHeader {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    .landingButtonWrapper {
+        flex-direction: column;
+    }
+
+    .landingButtonWrapper button {
+        width: auto;
+        justify-content: center;
+    }
+
+    .landingParagraph {
+        text-align: center;
+    }
+
+}
