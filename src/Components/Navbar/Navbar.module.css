@@ -1,0 +1,102 @@
+.navbarWrapper {
+    border-radius: 300px;
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: var(--navbar-gradient);
+    color: var(--surface-solid);
+    box-shadow: var(--shadow-md);
+    margin: 1rem 1rem;
+    top: 0.5rem;
+    position: sticky;
+    z-index: 1;
+
+}
+
+.navbarWrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--navbar-gradient);
+    filter: blur(5px);
+    z-index: -1;
+    border-radius: inherit;
+}
+
+.leftSide,
+.centerSide,
+.rightSide {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+
+.leftSide {
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.centerSide {
+    justify-content: center;
+    gap: 4rem;
+}
+
+.rightSide {
+    justify-content: flex-end;
+}
+
+.navbarLogo {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.navbarTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.navbarList,
+.navbarContact {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 0.5rem 0.75rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 150ms ease, transform 150ms ease;
+}
+
+.navbarList:hover,
+.navbarContact:hover {
+    background: var(--hover-item);
+}
+
+.navbarPerson {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 10px;
+    transition: background 150ms ease, transform 150ms ease;
+}
+
+.navbarPerson:hover {
+    background: var(--hover-item);
+}
+
+
+@media (max-width: 1025px) {
+
+
+    .centerSide {
+        display: none;
+    }
+
+    .rightSide {
+        flex: 0;
+    }
+}

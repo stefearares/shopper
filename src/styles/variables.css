@@ -1,5 +1,6 @@
 :root {
     /* Global variables / Brand identity */
+
     --font-sans: "RobotoVariable", Arial, system-ui;
     --background: radial-gradient(343px at 46.3% 47.5%, rgb(242, 242, 242) 0%, rgb(241, 241, 241) 72.9%);
     --brand-color: #4554e1;
@@ -11,4 +12,11 @@
     --focus-ring: 0 0 0 3px color-mix(in srgb, var(--brand-color) 28%, white);
     --shadow-lg: 0 20px 45px rgba(2, 6, 23, 0.12);
     --shadow-md: 0 10px 25px rgba(2, 6, 23, 0.10);
+
+    /* Navbar*/
+
+    --hover-item: rgba(255, 255, 255, 0.18);
+    --navbar-gradient: linear-gradient(90deg, rgba(69, 84, 225, 1) 36%, rgba(232, 45, 253, 1) 100%);
+
+
 }
