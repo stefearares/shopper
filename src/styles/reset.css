@@ -1,0 +1,12 @@
+html {
+    font-family: var(--font-sans);
+    color: var(--text-color);
+    background: var(--background);
+}
+
+body {
+    margin: 0;
+    display: flex;
+    min-width: 320px;
+    min-height: 100vh;
+}
