@@ -69,6 +69,7 @@ Do not guess how the app works. If you are starting a new task, need to understa
 - Do NOT create massive components that do everything
 - Do NOT hardcode secrets, URLs, or keys
 - Do NOT use process.env. Use `import.meta.env.VITE_...` for environment variables, as this is a Vite project.
+- Do NOT read, modify, or analyze anything inside `node_modules/`, `dist/`, or `build/` directories.
 
 ## When Writing Code
 1. Understand what the component/feature needs to do
