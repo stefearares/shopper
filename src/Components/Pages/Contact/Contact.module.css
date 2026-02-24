@@ -1,0 +1,236 @@
+.contactWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2.5rem 1.5rem;
+  background: var(--background);
+  color: var(--text);
+}
+
+
+.sectionTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: var(--text);
+}
+
+
+.formSection {
+  background: var(--surface-solid);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldGroup label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.fieldGroup input,
+.fieldGroup textarea {
+  background: var(--surface-solid);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 1rem;
+  padding: 1rem;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+
+}
+
+.fieldGroup input::placeholder,
+.fieldGroup textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.fieldGroup input:focus,
+.fieldGroup textarea:focus {
+  outline: none;
+  border-color: var(--brand-color);
+  box-shadow: var(--focus-ring);
+}
+
+.submitBtn {
+  align-self: flex-start;
+  border: 2px solid var(--brand-color);
+  background: var(--surface-solid);
+  color: var(--brand-color);
+  border-radius: 20px;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition:
+    transform 120ms ease,
+    box-shadow 200ms ease,
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.submitBtn:hover {
+  background: var(--brand-color);
+  color: var(--surface-solid);
+  box-shadow: var(--shadow-lg);
+}
+
+
+
+
+
+
+.successMessage {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: color-mix(in srgb, var(--brand-color) 10%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--brand-color) 35%, transparent);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.successMessage svg {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--brand-color);
+}
+
+.successTitle {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0;
+  color: var(--text);
+}
+
+.successMessage p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoCard {
+  border: 2px solid var(--brand-color);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.infoCard .sectionTitle {
+  margin-bottom: 1.5rem;
+}
+
+.infoList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  background: var(--surface-solid);
+}
+
+.iconWrapper svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--brand-color);
+}
+
+.infoItem > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoLabel {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.infoValue {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+
+.mapSection {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: 60rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mapWrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 16 / 7;
+  width: auto;
+}
+
+.mapWrapper iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+
+@media (min-width: 750px) {
+  .contactWrapper {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    padding: 5rem 4rem;
+    gap: 3rem;
+  }
+}

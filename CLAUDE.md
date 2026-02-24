@@ -58,6 +58,7 @@ Do not guess how the app works. If you are starting a new task, need to understa
 - try to optimize components with multiple useless rerenders using memo, useCallback(), useMemo()
 
 ## Styling
+- Follow my design and brand philosophy and only modify it if you think it will be a plus
 - Use Modern CSS with CSS variables for theming (defined in styles/)
 - Avoid inline styles unless absolutely necessary
 - Use standard CSS classe and modules, avoiding utility-class clutter in JSX
