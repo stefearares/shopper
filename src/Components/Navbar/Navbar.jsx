@@ -4,7 +4,7 @@ import style from "./Navbar.module.css";
 export default function Navbar() {
   return (
     <nav className={style.navbarWrapper}>
-      <div className={style.leftSide}>
+      <div className={style.leftSide} aria-label="Go to Shopper home">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -21,7 +21,7 @@ export default function Navbar() {
         <h2 className={style.navbarContact}>Contact</h2>
       </div>
 
-      <div className={style.rightSide}>
+      <div className={style.rightSide} aria-label="Account settings.">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
