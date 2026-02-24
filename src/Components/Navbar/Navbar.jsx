@@ -19,7 +19,7 @@ export default function Navbar() {
         </NavLink>
       </div>
       <div className={style.centerSide}>
-        <NavLink to="/list" aria-label="List" className={style.link}>
+        <NavLink to="/lists" aria-label="List" className={style.link}>
           List
         </NavLink>
         <NavLink to="/contact" aria-label="Contact" className={style.link}>
