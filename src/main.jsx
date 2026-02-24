@@ -1,10 +1,24 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./App/App";
+import Landing from "./Components/Pages/Landing/Landing";
+import PageNotFound from "./Components/Pages/PageNotFound/PageNotFound";
+import "./index.css";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { index: true, element: <Landing /> },
+      { path: "*", element: <PageNotFound /> },
+    ],
+  },
+]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>,
 );

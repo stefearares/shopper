@@ -1,12 +1,23 @@
-html {
-    font-family: var(--font-sans);
-    color: var(--text-color);
-    background: var(--background);
+#root {
+    display: flex;
+    flex-direction: column;
 }
 
+html,
+body,
+#root {
+    height: 100%;
+}
+
+
+html,
 body {
     margin: 0;
-    display: flex;
-    min-width: 320px;
-    min-height: 100vh;
+}
+
+
+html {
+    font-family: var(--font-sans);
+    color: var(--text);
+    background: var(--background);
 }
