@@ -1,16 +1,20 @@
 #root {
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 html,
-body {
+body,
+#root {
     height: 100%;
+}
+
+
+html,
+body {
     margin: 0;
 }
 
-body {
-    min-height: 100vh;
-}
 
 html {
     font-family: var(--font-sans);
