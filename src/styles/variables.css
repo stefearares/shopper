@@ -1,6 +1,39 @@
 :root {
-    /* Global variables */
+    /* Global variables / Brand identity */
+
     --font-sans: "RobotoVariable", Arial, system-ui;
-    --background: linear-gradient(to top, #09203f 0%, #537895 100%);
-    --text-color: black:
+    --background: radial-gradient(343px at 46.3% 47.5%, rgb(242, 242, 242) 0%, rgb(241, 241, 241) 72.9%);
+    --brand-color: #4554e1;
+    --text: #0f172a;
+    --text-muted: #475569;
+    --surface: rgba(255, 255, 255, 0.72);
+    --surface-solid: #ffffff;
+    --border: rgba(15, 23, 42, 0.10);
+    --focus-ring: 0 0 0 3px color-mix(in srgb, var(--brand-color) 28%, white);
+    --shadow-lg: 0 20px 45px rgba(2, 6, 23, 0.12);
+    --shadow-md: 0 10px 25px rgba(2, 6, 23, 0.10);
+
+    /* Navbar*/
+
+    --hover-item: rgba(255, 255, 255, 0.18);
+    --navbar-gradient: linear-gradient(90deg, rgba(69, 84, 225, 1) 36%, rgba(232, 45, 253, 1) 100%);
+
+
+}
+
+/* When toggling dark mode this class gets applied to the root element(html) */
+.dark {
+
+    --background: radial-gradient(343px at 46.3% 47.5%, rgb(28, 28, 28) 0%, rgb(18, 18, 18) 72.9%);
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --surface: rgba(30, 30, 30, 0.6);
+    --surface-solid: #1e1e1e;
+    --border: rgba(255, 255, 255, 0.1);
+    --brand-color: #7789ff;
+    --hover-item: rgba(255, 255, 255, 0.1);
+    --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.55);
+    --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.45);
+    --navbar-gradient: linear-gradient(90deg, rgb(100, 115, 255) 36%, rgb(188, 68, 255) 100%);
+
 }

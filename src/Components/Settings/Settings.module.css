@@ -1,0 +1,12 @@
+.Settings {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 10px;
+    transition: background 150ms ease, transform 150ms ease;
+}
+
+.Settings:hover {
+    background: var(--hover-item);
+}

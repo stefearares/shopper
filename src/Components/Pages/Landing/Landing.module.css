@@ -1,0 +1,153 @@
+.landingWrapper {
+    display: grid;
+    gap: 4rem;
+    padding: 6rem;
+    color: var(--text);
+    background: var(--background);
+    grid-template-columns: repeat(2, minmax(0, 42rem));
+    justify-content: center;
+    align-items: center;
+
+    grid-template-areas:
+        "text hero"
+        "cards cards";
+}
+
+.landingRightSide {
+    grid-area: text;
+    border-radius: 25px;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    background: var(--surface-solid);
+    box-shadow: var(--shadow-lg);
+
+}
+
+.landingHero {
+    grid-area: hero;
+    justify-self: center;
+
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    background: var(--surface-solid);
+
+    aspect-ratio: 16 / 10;
+    width: min(100%, 42rem);
+}
+
+.landingHeader {
+    text-align: center;
+    margin: 0 0 2rem 0;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    line-height: 1.5;
+}
+
+.landingParagraph {
+    margin: 0 0 2rem 0;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    text-align: center;
+    margin-inline: auto;
+}
+
+.landingButtonWrapper {
+    justify-content: center;
+    display: flex;
+    gap: 2rem;
+}
+
+.landingButtonWrapper button {
+    background: transparent;
+    border: 2px solid var(--brand-color);
+    border-radius: 999px;
+    color: var(--brand-color);
+    padding: 1rem 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 120ms ease;
+}
+
+.landingButtonWrapper button:hover {
+    background-color: var(--brand-color);
+    color: var(--surface-solid);
+}
+
+.landingButtonWrapper button:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+.landingButtonWrapper button:active {
+    transform: translateY(1px);
+}
+
+.heroImg {
+    width: 100%;
+    object-fit: cover;
+}
+
+.cardsSection {
+    grid-area: cards;
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 1rem;
+
+    margin: 1.5rem 0;
+    justify-items: center;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 1.5rem 1.5rem;
+    border-radius: 16px;
+    background:
+        linear-gradient(var(--surface-solid), var(--surface-solid)) padding-box,
+        var(--navbar-gradient) border-box;
+
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-lg);
+}
+
+
+
+.card svg {
+    width: 3rem;
+    height: 3rem;
+    color: var(--brand-color);
+
+}
+
+.card p {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+
+@media (max-width: 1025px) {
+    .landingWrapper {
+        grid-template-columns: 1fr;
+        padding: 2.5rem 1.5rem;
+        gap: 2rem;
+
+        grid-template-areas:
+            "hero"
+            "text"
+            "cards";
+    }
+
+
+
+
+    .cardsSection {
+        grid-template-columns: 1fr;
+
+    }
+}
