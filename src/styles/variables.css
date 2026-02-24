@@ -17,8 +17,7 @@
 
     --hover-item: rgba(255, 255, 255, 0.18);
     --navbar-gradient: linear-gradient(90deg, rgba(69, 84, 225, 1) 36%, rgba(232, 45, 253, 1) 100%);
-
-
+    --text-on-navbar: #ffffff;
 }
 
 /* When toggling dark mode this class gets applied to the root element(html) */
