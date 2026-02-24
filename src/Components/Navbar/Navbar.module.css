@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: space-between;
     background: var(--navbar-gradient);
-    color: var(--surface-solid);
+    color: var(--text-on-navbar);
     box-shadow: var(--shadow-md);
     margin: 1rem 1rem;
     top: 0.5rem;

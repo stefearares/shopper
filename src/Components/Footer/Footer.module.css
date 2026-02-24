@@ -7,7 +7,7 @@
     align-items: center;
 
     background: var(--navbar-gradient);
-    color: var(--surface-solid);
+    color: var(--text-on-navbar);
     box-shadow: var(--shadow-md);
 
     margin: auto 1rem 0 1rem;
