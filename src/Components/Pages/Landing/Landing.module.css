@@ -57,7 +57,7 @@
 .landingButtonWrapper {
     justify-content: center;
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .landingButtonWrapper button {
@@ -66,6 +66,7 @@
     border-radius: 20px;
     color: var(--brand-color);
     padding: 1rem 2rem;
+    font-size: 1.25rem;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 120ms ease;
