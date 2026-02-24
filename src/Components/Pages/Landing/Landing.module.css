@@ -67,7 +67,7 @@
     color: var(--brand-color);
     padding: 1rem 2rem;
     font-size: 1.25rem;
-    font-weight: 500;
+    font-weight: 700;
     cursor: pointer;
     transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 120ms ease;
 }
