@@ -45,6 +45,7 @@ export default function ShoppingLists() {
                     className={style.actionBtn}
                     aria-label="View"
                     type="button"
+                    title="View list"
                   >
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path
@@ -58,6 +59,7 @@ export default function ShoppingLists() {
                     className={style.actionBtn}
                     aria-label="Mark as done"
                     type="button"
+                    title="Mark as done"
                   >
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path

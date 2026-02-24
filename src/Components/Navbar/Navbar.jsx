@@ -6,7 +6,13 @@ export default function Navbar() {
   return (
     <nav className={style.navbarWrapper}>
       <div className={style.leftSide} aria-label="Go to Shopper home">
-        <NavLink to="/" end aria-label="Home" className={style.link}>
+        <NavLink
+          to="/"
+          end
+          aria-label="Home"
+          className={style.link}
+          title="Home"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -27,7 +33,11 @@ export default function Navbar() {
         </NavLink>
       </div>
 
-      <div className={style.rightSide} aria-label="Account settings.">
+      <div
+        className={style.rightSide}
+        aria-label="Account settings."
+        title="User options"
+      >
         <Settings />
       </div>
     </nav>
