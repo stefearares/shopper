@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import style from "./ShoppingLists.module.css";
 import Search from "../../Search/Search";
-import { ConfirmModal, FilterModal } from "../../Modals/index";
+import { ConfirmModal, FilterModal, CreateListModal } from "../../Modals/index";
 
 const sampleItems = [
   { id: 1, title: "Groceries for week", date: "2026-02-24" },
@@ -56,6 +56,7 @@ export default function ShoppingLists() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [confirmItem, setConfirmItem] = useState(null);
 
   // These will be driven by Redux
@@ -86,6 +87,11 @@ export default function ShoppingLists() {
     () => applyFilters(sampleItems, query, sort),
     [query, sort],
   );
+
+  const handleCreateList = (listData) => {
+    console.log("create list:", listData);
+    // Will be wired to Redux
+  };
 
   const handleDelete = (item) => setConfirmItem(item);
   const confirmDelete = () => {
@@ -185,7 +191,7 @@ export default function ShoppingLists() {
           <div className={style.createPanel}>
             <button
               className={style.createBtn}
-              onClick={() => console.log("create list")}
+              onClick={() => setIsCreateModalOpen(true)}
               type="button"
             >
               Create +
@@ -194,6 +200,12 @@ export default function ShoppingLists() {
         </section>
       </main>
 
+      {isCreateModalOpen && (
+        <CreateListModal
+          onCreate={handleCreateList}
+          onClose={() => setIsCreateModalOpen(false)}
+        />
+      )}
       {isFilterModalOpen && (
         <FilterModal
           current={sort}

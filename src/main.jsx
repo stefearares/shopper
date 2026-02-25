@@ -29,7 +29,10 @@ const router = createBrowserRouter([
       {
         path: "lists",
         element: <ProtectedRoute />,
-        children: [{ index: true, element: <ShoppingLists /> }],
+        children: [
+          { index: true, element: <ShoppingLists /> },
+          { path: ":listId", element: <ListIdPage /> },
+        ],
       },
 
       { path: "contact", element: <Contact /> },

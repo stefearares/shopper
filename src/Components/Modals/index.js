@@ -6,3 +6,4 @@ export { default as URLModal } from "./URLModal";
 export { default as AddItemModal } from "./AddItemModal";
 export { default as ShareModal } from "./ShareModal";
 export { default as FilterModal } from "./FilterModal";
+export { default as CreateListModal } from "./CreateListModal";
