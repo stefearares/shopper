@@ -5,6 +5,7 @@ import App from "./App/App";
 import Landing from "./Components/Pages/Landing/Landing";
 import PageNotFound from "./Components/Pages/PageNotFound/PageNotFound";
 import ShoppingLists from "./Components/Pages/ShoppingLists/ShoppingLists";
+import Contact from "./Components/Pages/Contact/Contact";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       { index: true, element: <Landing /> },
       { path: "lists", element: <ShoppingLists /> },
       { path: "*", element: <PageNotFound /> },
+      { path: "contact", element: <Contact /> },
     ],
   },
 ]);
