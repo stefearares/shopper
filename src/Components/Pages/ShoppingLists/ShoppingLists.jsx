@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./ShoppingLists.module.css";
 import Search from "../../Search/Search";
-
+import { useNavigate } from "react-router";
 const sampleItems = [
   { id: 1, title: "Groceries for week", date: "2026-02-24" },
   { id: 2, title: "Hardware store run", date: "2026-02-22" },
@@ -15,6 +15,7 @@ const sampleItems = [
 ];
 
 export default function ShoppingLists() {
+  const navigate = useNavigate();
   return (
     <>
       <Search
@@ -46,6 +47,7 @@ export default function ShoppingLists() {
                     aria-label="View"
                     type="button"
                     title="View list"
+                    onClick={() => navigate(`/lists/${item.id}`)}
                   >
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path
