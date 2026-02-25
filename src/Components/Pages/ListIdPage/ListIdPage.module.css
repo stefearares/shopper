@@ -287,6 +287,16 @@
   box-shadow: var(--focus-ring);
 }
 
+.doneBtn {
+  border-color: #e53e3e;
+  color: #e53e3e;
+}
+
+.doneBtn:hover {
+  background: #e53e3e;
+  color: var(--surface-solid);
+}
+
 
 @media (min-width: 640px) {
   .listHeader {
@@ -297,4 +307,90 @@
   .columnsGrid {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+/* ── Skeleton ── */
+.skeleton {
+  border-radius: 6px;
+  background: var(--border);
+}
+
+.skeletonListTitle {
+  height: 1.75rem;
+  width: 45%;
+  border-radius: 8px;
+}
+
+.skeletonDate {
+  height: 2rem;
+  width: 8rem;
+  border-radius: 8px;
+}
+
+.skeletonColumnTitle {
+  height: 1.25rem;
+  width: 40%;
+  margin-bottom: 0.75rem;
+  border-radius: 6px;
+}
+
+.skeletonItemName {
+  height: 0.875rem;
+  width: 60%;
+  border-radius: 4px;
+}
+
+.skeletonItemPrice {
+  height: 0.75rem;
+  width: 2.5rem;
+  border-radius: 4px;
+  margin-top: 0.25rem;
+}
+
+.skeletonIconBtn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+}
+
+/* ── Error box ── */
+.errorBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.errorMessage {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.errorSub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.errorBack {
+  margin-top: 0.5rem;
+  padding: 0.55rem 1.25rem;
+  border: 2px solid var(--brand-color);
+  background: transparent;
+  color: var(--brand-color);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+}
+
+.errorBack:hover {
+  background: var(--brand-color);
+  color: #fff;
 }

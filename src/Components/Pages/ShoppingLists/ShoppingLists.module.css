@@ -171,9 +171,114 @@
 }
 
 
+/* ── Filter panel ── */
+.filterPanel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 60rem;
+    margin-inline: auto;
+    padding: 0.5rem 1rem 0;
+}
+
+.filterOption {
+    padding: 0.4rem 0.9rem;
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface-solid);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    font-family: var(--font-sans);
+}
+
+.filterOption:hover {
+    border-color: var(--brand-color);
+    color: var(--brand-color);
+}
+
+.filterActive {
+    background: var(--brand-color);
+    color: #fff;
+    border-color: var(--brand-color);
+}
+
+/* ── Delete action button ── */
+.deleteAction {
+    color: #e53e3e;
+    border-color: #e53e3e;
+}
+
+.deleteAction:hover,
+.deleteAction:active {
+    background: #e53e3e;
+    color: var(--surface-solid);
+    border-color: #e53e3e;
+}
+
+/* ── Empty state ── */
+.emptyState {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ── Skeleton ── */
+.skeleton {
+    border-radius: 6px;
+    background: var(--border);
+}
+
+.skeletonTitle {
+    height: 1rem;
+    width: 55%;
+}
+
+.skeletonBtn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+}
+
+/* ── Error / empty box ── */
+.stateBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.stateMessage {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.retryBtn {
+    padding: 0.55rem 1.25rem;
+    border: 2px solid var(--brand-color);
+    background: transparent;
+    color: var(--brand-color);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: background 0.15s, color 0.15s;
+}
+
+.retryBtn:hover {
+    background: var(--brand-color);
+    color: #fff;
+}
+
 @media (max-width: 720px) {
     .listItem {
         align-items: flex-start;
     }
-
 }
