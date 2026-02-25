@@ -1,8 +1,29 @@
 import { useState, useCallback } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import style from "./ListIdPage.module.css";
-import ShareModal from "./ShareModal";
-import AddItemModal from "./AddItemModal";
+import { ShareModal, AddItemModal, ConfirmModal } from "../../Modals/index";
+
+function SkeletonColumn({ label }) {
+  return (
+    <section className={style.column} aria-label={label} aria-busy="true">
+      <div className={`${style.skeleton} ${style.skeletonColumnTitle}`} />
+      <ul className={style.itemList}>
+        {Array.from({ length: 3 }).map((_, i) => (
+          <li key={i} className={style.item}>
+            <div className={style.itemInfo}>
+              <div className={`${style.skeleton} ${style.skeletonItemName}`} />
+              <div className={`${style.skeleton} ${style.skeletonItemPrice}`} />
+            </div>
+            <div className={style.itemActions}>
+              <div className={`${style.skeleton} ${style.skeletonIconBtn}`} />
+              <div className={`${style.skeleton} ${style.skeletonIconBtn}`} />
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
 
 const SAMPLE = {
   title: "Groceries for week",
@@ -17,6 +38,11 @@ const SAMPLE = {
 
 export default function ListIdPage() {
   const { listId } = useParams();
+  const navigate = useNavigate();
+
+  // These will come from Redux
+  const isLoading = false;
+  const hasError = false;
 
   const [title, setTitle] = useState(SAMPLE.title);
   const [date, setDate] = useState(SAMPLE.date);
@@ -25,6 +51,7 @@ export default function ListIdPage() {
   const [bought, setBought] = useState(SAMPLE.bought);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isDoneConfirmOpen, setIsDoneConfirmOpen] = useState(false);
 
   const handleTitleKeyDown = (e) => {
     if (e.key === "Enter" || e.key === "Escape") setIsEditingTitle(false);
@@ -50,8 +77,63 @@ export default function ListIdPage() {
 
   const handleAddItem = useCallback((item) => {
     setToBuy((prev) => [...prev, { ...item, id: Date.now() }]);
-    setIsAddOpen(false);
   }, []);
+
+  const handleDoneConfirm = () => {
+    console.log("list done:", listId);
+    navigate("/lists");
+  };
+
+  if (isLoading) {
+    return (
+      <div className={style.pageWrapper} aria-busy="true">
+        <header className={style.listHeader}>
+          <div className={style.titleGroup}>
+            <div className={`${style.skeleton} ${style.skeletonListTitle}`} />
+          </div>
+          <div className={`${style.skeleton} ${style.skeletonDate}`} />
+        </header>
+        <div className={style.columnsGrid}>
+          <SkeletonColumn label="To Buy loading" />
+          <SkeletonColumn label="Bought loading" />
+        </div>
+      </div>
+    );
+  }
+
+  if (hasError) {
+    return (
+      <div className={style.pageWrapper}>
+        <div className={style.errorBox}>
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--text-muted)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <p className={style.errorMessage}>This list could not be loaded.</p>
+          <p className={style.errorSub}>
+            It may have been deleted or you may not have access.
+          </p>
+          <button
+            className={style.errorBack}
+            type="button"
+            onClick={() => navigate("/lists")}
+          >
+            Back to your lists
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={style.pageWrapper}>
@@ -235,8 +317,8 @@ export default function ListIdPage() {
 
           <div className={style.columnFooter}>
             <button
-              className={style.footerBtn}
-              onClick={() => console.log("done:", listId)}
+              className={`${style.footerBtn} ${style.doneBtn}`}
+              onClick={() => setIsDoneConfirmOpen(true)}
               type="button"
             >
               Done
@@ -250,6 +332,15 @@ export default function ListIdPage() {
         <AddItemModal
           onAdd={handleAddItem}
           onClose={() => setIsAddOpen(false)}
+        />
+      )}
+      {isDoneConfirmOpen && (
+        <ConfirmModal
+          message="Mark this list as done? It will be removed from your dashboard."
+          confirmLabel="Done Shopping"
+          isDanger
+          onConfirm={handleDoneConfirm}
+          onClose={() => setIsDoneConfirmOpen(false)}
         />
       )}
     </div>
