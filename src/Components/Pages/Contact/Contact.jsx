@@ -196,19 +196,20 @@ export default function Contact() {
             </li>
           </ul>
         </div>
+
       </aside>
 
       <div className={style.mapSection}>
-        <h2 className={style.sectionTitle}>Find us here!</h2>
-        <div className={style.mapWrapper}>
-          <iframe
-            title="Our location on Google Maps"
+      <h2 className={style.sectionTitle}>Find us here!</h2>
+      <div className={style.mapWrapper}>
+        <iframe
+          title="Our location on Google Maps"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2783.3063401666777!2d21.2300059!3d45.765050599999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474567ff8f9576cb%3A0xc9c3fcbb17252ce1!2sCognizant!5e0!3m2!1sro!2sro!4v1771959844779!5m2!1sro!2sro"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
-        </div>
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
+      </div>
       </div>
     </div>
   );

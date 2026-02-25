@@ -1,15 +1,20 @@
-import React from "react";
+import { useRef } from "react";
 import style from "./Search.module.css";
 
-export default function Search({ onSearch, onFilterClick }) {
-  const inputRef = React.useRef(null);
+export default function Search({ onSearch, onFilterClick, defaultValue = "" }) {
+  const debounceRef = useRef(null);
+
+  const triggerSearch = (value) => {
+    clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => onSearch?.(value), 400);
+  };
+
+  const handleChange = (e) => triggerSearch(e.target.value);
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
-      if (e.nativeEvent?.isComposing) return;
-      e.preventDefault();
-      e.stopPropagation();
-      onSearch?.(inputRef.current?.value ?? "");
+    if (e.key === "Enter" && !e.nativeEvent?.isComposing) {
+      clearTimeout(debounceRef.current);
+      onSearch?.(e.target.value);
     }
   };
 
@@ -18,7 +23,6 @@ export default function Search({ onSearch, onFilterClick }) {
       <div className={style.searchBar} role="search">
         <div className={style.inputGroup}>
           <input
-            ref={inputRef}
             className={style.input}
             type="search"
             name="q"
@@ -26,6 +30,8 @@ export default function Search({ onSearch, onFilterClick }) {
             aria-label="Search"
             autoComplete="off"
             enterKeyHint="search"
+            defaultValue={defaultValue}
+            onChange={handleChange}
             onKeyDown={handleKeyDown}
           />
         </div>
