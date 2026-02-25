@@ -1,13 +1,24 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { Provider } from "react-redux";
+import store from "./store/index";
 import App from "./App/App";
+import ProtectedRoute from "./Components/ProtectedRoute";
+
 import Landing from "./Components/Pages/Landing/Landing";
-import PageNotFound from "./Components/Pages/PageNotFound/PageNotFound";
-import ShoppingLists from "./Components/Pages/ShoppingLists/ShoppingLists";
-import Contact from "./Components/Pages/Contact/Contact";
-import ListIdPage from "./Components/Pages/ListIdPage/ListIdPage";
 import "./index.css";
+
+const ShoppingLists = lazy(
+  () => import("./Components/Pages/ShoppingLists/ShoppingLists"),
+);
+const ListIdPage = lazy(
+  () => import("./Components/Pages/ListIdPage/ListIdPage"),
+);
+const Contact = lazy(() => import("./Components/Pages/Contact/Contact"));
+const PageNotFound = lazy(
+  () => import("./Components/Pages/PageNotFound/PageNotFound"),
+);
 
 const router = createBrowserRouter([
   {
@@ -15,16 +26,22 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Landing /> },
-      { path: "lists", element: <ShoppingLists /> },
-      { path: "*", element: <PageNotFound /> },
-      { path: "lists/:listId", element: <ListIdPage /> },
+      {
+        path: "lists",
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <ShoppingLists /> }],
+      },
+
       { path: "contact", element: <Contact /> },
+      { path: "*", element: <PageNotFound /> },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 );
