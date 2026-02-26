@@ -13,6 +13,7 @@ export function useAuthSync() {
   }, [user]);
 
   useEffect(() => {
+    // getSession() resolves immediately before the first render, preventing a flash of "unauthenticated" state. onAuthStateChange fires late rin the event loop
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
         dispatch(setUser(session.user));

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { searchProducts } from "../../utils/productApi";
+import { searchProducts, PAGE_SIZE } from "../../utils/productApi";
 import ModalShell from "./ModalShell";
 import styles from "./Modals.module.css";
 
@@ -21,10 +21,31 @@ export default function AddItemModal({ onAdd, onClose }) {
     setIsSearching(true);
     setSearchError("");
     try {
-      const data = await searchProducts(q, p);
-      setResults((prev) => (append ? [...prev, ...data.items] : data.items));
-      setHasMore(data.hasMore);
-      setPage(p);
+      if (!q.trim()) {
+        const data = await searchProducts(q, p);
+        setResults((prev) => (append ? [...prev, ...data.items] : data.items));
+        setHasMore(data.hasMore);
+        setPage(p);
+        return;
+      }
+
+      let currentPage = p;
+      let nameMatched = [];
+      let serverHasMore = true;
+
+      while (nameMatched.length < PAGE_SIZE && serverHasMore) {
+        const data = await searchProducts(q, currentPage);
+        const matched = data.items.filter((item) =>
+          item.name.toLowerCase().includes(q.toLowerCase())
+        );
+        nameMatched = [...nameMatched, ...matched];
+        serverHasMore = data.hasMore;
+        currentPage++;
+      }
+
+      setResults((prev) => (append ? [...prev, ...nameMatched] : nameMatched));
+      setHasMore(serverHasMore);
+      setPage(currentPage - 1); // last page we actually fetched
     } catch {
       setSearchError("Could not load products. Try again.");
     } finally {
@@ -41,12 +62,6 @@ export default function AddItemModal({ onAdd, onClose }) {
     return () => clearTimeout(debounceRef.current);
   }, [query, tab, fetchProducts]);
 
-  useEffect(() => {
-    if (tab === "search" && results.length === 0) {
-      fetchProducts("", 0, false);
-    }
-  }, [tab]);
-
   const handleCustomAdd = (e) => {
     e.preventDefault();
     if (!name.trim()) return;
@@ -62,6 +77,7 @@ export default function AddItemModal({ onAdd, onClose }) {
   const loadMore = () => {
     fetchProducts(query, page + 1, true);
   };
+
 
   return (
     <ModalShell title="Add Item" onClose={onClose}>
@@ -159,16 +175,14 @@ export default function AddItemModal({ onAdd, onClose }) {
                   </li>
                 ))}
               </ul>
-              {hasMore && (
-                <button
-                  className={styles.loadMoreBtn}
-                  onClick={loadMore}
-                  disabled={isSearching}
-                  type="button"
-                >
-                  {isSearching ? "Loading…" : "Load more"}
-                </button>
-              )}
+              <button
+                className={styles.loadMoreBtn}
+                onClick={loadMore}
+                disabled={!hasMore || isSearching}
+                type="button"
+              >
+                {isSearching ? "Loading…" : "Load more"}
+              </button>
             </>
           ) : isSearching ? (
             <p className={styles.emptyState}>Searching…</p>

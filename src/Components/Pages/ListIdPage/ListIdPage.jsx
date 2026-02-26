@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./ListIdPage.module.css";
@@ -105,25 +105,16 @@ export default function ListIdPage() {
     );
   };
 
-  const moveToBought = useCallback(
-    (item) => dispatch(updateItemStatus({ id: item.id, status: "bought" })),
-    [dispatch],
-  );
+  const moveToBought = (item) =>
+    dispatch(updateItemStatus({ id: item.id, status: "bought" }));
 
-  const moveToToBuy = useCallback(
-    (item) => dispatch(updateItemStatus({ id: item.id, status: "to_buy" })),
-    [dispatch],
-  );
+  const moveToToBuy = (item) =>
+    dispatch(updateItemStatus({ id: item.id, status: "to_buy" }));
 
-  const handleDeleteItem = useCallback(
-    (id) => dispatch(deleteItem(id)),
-    [dispatch],
-  );
+  const handleDeleteItem = (id) => dispatch(deleteItem(id));
 
-  const handleAddItem = useCallback(
-    ({ name, price }) => dispatch(addItem({ listId, name, price })),
-    [dispatch, listId],
-  );
+  const handleAddItem = ({ name, price }) =>
+    dispatch(addItem({ listId, name, price }));
 
   const handleDoneConfirm = () => {
     dispatch(deleteList(listId));
@@ -198,10 +189,11 @@ export default function ListIdPage() {
             <h1
               className={style.listTitle}
               onClick={beginEditTitle}
-              title={isOwner ? "Click to edit" : undefined}
               style={isOwner ? undefined : { cursor: "default" }}
             >
-              {list?.title ?? ""}
+              <span className={style.listTitleText} title={list?.title}>
+                {list?.title ?? ""}
+              </span>
               {isOwner && (
                 <span className={style.editHint} aria-hidden="true">
                   <svg
@@ -261,7 +253,9 @@ export default function ListIdPage() {
             {toBuy.map((item) => (
               <li key={item.id} className={style.item}>
                 <div className={style.itemInfo}>
-                  <span className={style.itemName}>{item.name}</span>
+                  <span className={style.itemName} title={item.name}>
+                    {item.name}
+                  </span>
                   {item.price && (
                     <span className={style.itemPrice}>
                       ${Number(item.price).toFixed(2)}

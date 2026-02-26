@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const stored = localStorage.getItem("darkMode");
-const initialDark = stored !== null ? stored === "true" : false;
+const isValid = stored === "true" || stored === "false";
+if (stored !== null && !isValid) localStorage.removeItem("darkMode");
+const initialDark = isValid ? stored === "true" : false;
 
 const uiSlice = createSlice({
   name: "ui",

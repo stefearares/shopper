@@ -22,6 +22,8 @@
   min-height: 2.5rem;
   display: flex;
   align-items: center;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .dateInput {
@@ -43,6 +45,15 @@
   border-bottom: 2px solid transparent;
   transition: border-color 150ms ease;
   line-height: 1.4;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.listTitleText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .listTitle:hover {
@@ -77,6 +88,12 @@
   width: 100%;
   padding: 0;
   line-height: 1.3;
+}
+
+/* trick to modify the color of the built in calendar picker svg */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(40%) sepia(100%) saturate(500%) hue-rotate(190deg) brightness(90%) contrast(95%);
+  opacity: 1;
 }
 
 .dateInput {
@@ -357,7 +374,6 @@
   border-radius: 8px;
 }
 
-/* ── Error box ── */
 .errorBox {
   display: flex;
   flex-direction: column;

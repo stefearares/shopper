@@ -12,7 +12,6 @@ export default function Settings() {
   const { isDark, toggle } = useDarkMode();
   const { user, isAuthenticated, logout } = useAuth();
 
-  // Close on outside click
   useEffect(() => {
     const handleOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -41,6 +40,7 @@ export default function Settings() {
         aria-haspopup="menu"
         onClick={() => setIsOpen((prev) => !prev)}
         type="button"
+        title="Options"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

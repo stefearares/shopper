@@ -1,5 +1,5 @@
 const BASE_URL = "https://dummyjson.com";
-const PAGE_SIZE = 10;
+export const PAGE_SIZE = 10;
 
 export async function searchProducts(query, page = 0) {
   const skip = page * PAGE_SIZE;

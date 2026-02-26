@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import style from "./Navbar.module.css";
@@ -16,10 +16,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const isMenuOpen = useMemo(
-    () => menuOpenPath === location.pathname,
-    [menuOpenPath, location.pathname],
-  );
+  const isMenuOpen = menuOpenPath === location.pathname;
 
   const openMenu = () => setMenuOpenPath(location.pathname);
   const closeMenu = () => setMenuOpenPath(null);

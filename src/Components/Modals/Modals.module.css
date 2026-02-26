@@ -286,6 +286,11 @@
   background: var(--border);
 }
 
+.loadMoreBtn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
 .emptyState {
   text-align: center;
   padding: 2rem 1rem;

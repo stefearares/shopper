@@ -13,7 +13,9 @@ export const getListItems = (listId) =>
 export const addItem = ({ listId, name, price }) =>
   supabase
     .from("list_items")
-    .insert({ list_id: listId, name, price: price || null, status: "to_buy" });
+    .insert({ list_id: listId, name, price: price || null, status: "to_buy" })
+    .select()
+    .single();
 
 export const updateItem = ({ id, status }) =>
   supabase.from("list_items").update({ status }).eq("id", id);

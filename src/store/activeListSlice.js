@@ -27,12 +27,9 @@ export const updateListMeta = createAsyncThunk(
 export const addItem = createAsyncThunk(
   "activeList/addItem",
   async ({ listId, name, price }, { rejectWithValue }) => {
-    const { error } = await itemsApi.addItem({ listId, name, price });
+    const { data, error } = await itemsApi.addItem({ listId, name, price });
     if (error) return rejectWithValue(error.message);
-    const { data: items, error: fetchError } =
-      await itemsApi.getListItems(listId);
-    if (fetchError) return rejectWithValue(fetchError.message);
-    return items;
+    return data;
   },
 );
 
@@ -92,7 +89,7 @@ const activeListSlice = createSlice({
         }
       })
       .addCase(addItem.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items.push(action.payload);
       })
       .addCase(updateItemStatus.fulfilled, (state, action) => {
         const item = state.items.find((i) => i.id === action.payload.id);

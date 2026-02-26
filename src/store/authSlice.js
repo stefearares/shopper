@@ -4,7 +4,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: null,
-    isLoadingAuth: false, // resolved immediately;
+    isLoadingAuth: true, // true until getSession() resolves in useAuthSync
   },
   reducers: {
     setUser(state, action) {

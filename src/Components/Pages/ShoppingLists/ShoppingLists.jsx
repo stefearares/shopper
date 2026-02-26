@@ -132,8 +132,10 @@ export default function ShoppingLists() {
               filteredItems.map((item) => (
                 <li key={item.id} className={style.listItem}>
                   <div className={style.itemMain}>
-                    <h3 className={style.itemTitle} title={item.title}>
-                      {item.title}
+                    <h3 className={style.itemTitle}>
+                      <span className={style.itemTitleText} title={item.title}>
+                        {item.title}
+                      </span>
                       <span className={style.itemSep} aria-hidden="true">
                         {" "}
                         |{" "}
