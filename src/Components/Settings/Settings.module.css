@@ -27,7 +27,6 @@
   background: var(--hover-item);
 }
 
-/* ── Dropdown panel ── */
 .dropdown {
   position: absolute;
   top: calc(100% + 0.5rem);
@@ -39,23 +38,28 @@
   box-shadow: var(--shadow-lg);
   padding: 0.5rem;
   z-index: 300;
-  animation: popIn 0.12s ease;
 }
 
-@keyframes popIn {
-  from { opacity: 0; transform: translateY(-6px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+
+
+.emailRow {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* ── Dark mode row ── */
 .darkModeRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.6rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background 0.12s;
+  transition: background 0.15s;
   gap: 0.75rem;
 }
 
@@ -64,22 +68,21 @@
 }
 
 .rowLabel {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text);
   user-select: none;
 }
 
-/* ── Toggle switch ── */
 .toggleTrack {
   position: relative;
   display: inline-flex;
   align-items: center;
   width: 2.25rem;
   height: 1.25rem;
-  border-radius: 999px;
+  border-radius: 20px;
   background: var(--border);
-  transition: background 0.18s;
+  transition: background 0.2s;
   flex-shrink: 0;
 }
 
@@ -91,11 +94,10 @@
   pointer-events: none;
 }
 
-.toggleInput:checked + .toggleThumb {
+.toggleInput:checked+.toggleThumb {
   transform: translateX(1rem);
 }
 
-/* Checked state: track turns brand-colored */
 .darkModeRow:has(.toggleInput:checked) .toggleTrack {
   background: var(--brand-color);
 }
@@ -107,18 +109,16 @@
   height: 1rem;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  box-shadow: var(--shadow-md);
   transition: transform 0.18s ease;
 }
 
-/* ── Divider ── */
 .divider {
   border: none;
   border-top: 1px solid var(--border);
-  margin: 0.375rem 0;
+  margin: 0.5rem 0;
 }
 
-/* ── Auth button ── */
 .authBtn {
   display: flex;
   align-items: center;
@@ -126,14 +126,14 @@
   width: 100%;
   background: none;
   border: none;
-  padding: 0.6rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text);
   font-family: var(--font-sans);
-  transition: background 0.12s, color 0.12s;
+  transition: background 0.15s, color 0.15s;
   text-align: left;
 }
 

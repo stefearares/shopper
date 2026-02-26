@@ -29,12 +29,9 @@ const router = createBrowserRouter([
       {
         path: "lists",
         element: <ProtectedRoute />,
-        children: [
-          { index: true, element: <ShoppingLists /> },
-          { path: ":listId", element: <ListIdPage /> },
-        ],
+        children: [{ index: true, element: <ShoppingLists /> }],
       },
-
+      { path: "lists/:listId", element: <ListIdPage /> }, //readonly is checked in component
       { path: "contact", element: <Contact /> },
       { path: "*", element: <PageNotFound /> },
     ],
