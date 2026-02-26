@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../store/uiSlice";
-import { setUser } from "../../store/authSlice";
-import { supabase, IS_SUPABASE_CONFIGURED } from "../../lib/supabaseClient";
+import { supabase } from "../../lib/supabaseClient";
 import ModalShell from "./ModalShell";
 import styles from "./Modals.module.css";
 
@@ -31,13 +30,6 @@ export default function AuthModal() {
 
     if (tab === "signup" && password !== confirmPassword) {
       setError("Passwords do not match.");
-      return;
-    }
-
-    // Dev mode:
-    if (!IS_SUPABASE_CONFIGURED) {
-      dispatch(setUser({ id: "dev-user", email }));
-      onClose();
       return;
     }
 
@@ -84,21 +76,6 @@ export default function AuthModal() {
         </button>
       </div>
 
-      {!IS_SUPABASE_CONFIGURED && (
-        <p
-          style={{
-            fontSize: "1rem",
-            color: "var(--text-muted)",
-            background:
-              "color-mix(in srgb, var(--brand-color) 8%, transparent)",
-            borderRadius: "0.5rem",
-            padding: "0.5rem 0.75rem",
-            marginBottom: "1rem",
-          }}
-        >
-          Dev mode.
-        </p>
-      )}
       {error && <p className={styles.error}>{error}</p>}
       {successMsg && (
         <p

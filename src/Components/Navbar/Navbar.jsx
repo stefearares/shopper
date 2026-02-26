@@ -12,7 +12,7 @@ export default function Navbar() {
 
   const menuRef = useRef(null);
   const { isDark, toggle } = useDarkMode();
-  const { isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -77,14 +77,16 @@ export default function Navbar() {
       </div>
 
       <div className={style.centerSide}>
-        <NavLink
-          to="/lists"
-          aria-label="List"
-          className={style.link}
-          onClick={closeMenu}
-        >
-          List
-        </NavLink>
+        {isAuthenticated && (
+          <NavLink
+            to="/lists"
+            aria-label="List"
+            className={style.link}
+            onClick={closeMenu}
+          >
+            List
+          </NavLink>
+        )}
         <NavLink
           to="/contact"
           aria-label="Contact"
@@ -141,9 +143,15 @@ export default function Navbar() {
 
       {isMenuOpen && (
         <div id={mobileMenuId} className={style.mobileMenu}>
-          <NavLink to="/lists" className={style.mobileLink} onClick={closeMenu}>
-            Lists
-          </NavLink>
+          {isAuthenticated && (
+            <NavLink
+              to="/lists"
+              className={style.mobileLink}
+              onClick={closeMenu}
+            >
+              Lists
+            </NavLink>
+          )}
           <NavLink
             to="/contact"
             className={style.mobileLink}
@@ -154,6 +162,9 @@ export default function Navbar() {
 
           <hr className={style.mobileDivider} />
 
+          {isAuthenticated && (
+            <p className={style.mobileEmail}>{user?.email}</p>
+          )}
           <label className={style.mobileDarkRow}>
             <span>Dark mode</span>
             <span className={style.toggleTrack} aria-hidden="true">
