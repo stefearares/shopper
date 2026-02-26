@@ -1,5 +1,11 @@
 # Shopper - Rares Stefea
 
+# Lighthouse results
+
+Shopper is 100% inclusive, accesible and utilizes the best SEO practices.
+
+![seo-results](./misc/results.png)
+
 ## UI - Desktop + Mobile
 
 - Desktop Landing page:
