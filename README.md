@@ -2,6 +2,30 @@
 
 ## UI - Desktop + Mobile
 
+- Desktop Landing page:
+  ![desktop-landing](./misc/desktop-landing.png)
+
+- Phone Landing page:
+  ![phone-landing](./misc/phone-landing.png)
+
+- Desktop Contact page:
+  ![desktop-contact](./misc/desktop-contact.png)
+
+- Phone Contact page:
+  ![phone-contact](./misc/phone-contact.png)
+
+- Phone List:
+  ![phone-list](./misc/phone-list.png)
+
+- Phone Modal:
+  ![phone-modal](./misc/phone-modal.png)
+
+- Desktop lists:
+  ![desktop-lists](./misc/desktop-lists.png)
+
+- Desktop modal:
+  ![desktop-modal](./misc/desktop-modal.png)
+
 ## Wireframes
 
 - Contact Page wireframe:
