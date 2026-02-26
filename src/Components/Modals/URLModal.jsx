@@ -4,18 +4,7 @@ import { useNavigate } from "react-router";
 import { closeModal } from "../../store/uiSlice";
 import ModalShell from "./ModalShell";
 import styles from "./Modals.module.css";
-
-function extractListPath(input) {
-  const trimmed = input.trim();
-  try {
-    const url = new URL(trimmed);
-    return url.pathname;
-  } catch {
-    if (trimmed.startsWith("/lists/")) return trimmed;
-
-    return null;
-  }
-}
+import { extractListPath } from "../../utils/urlHelpers";
 
 export default function URLModal() {
   const dispatch = useDispatch();

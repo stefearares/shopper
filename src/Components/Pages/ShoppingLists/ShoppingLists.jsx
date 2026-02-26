@@ -1,31 +1,12 @@
 import { useEffect, useState, useMemo } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate } from "react-router";
 import style from "./ShoppingLists.module.css";
 import Search from "../../Search/Search";
 import { ConfirmModal, FilterModal, CreateListModal } from "../../Modals/index";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLists, createList, deleteList } from "../../../store/listsSlice";
-function applyFilters(items, query, sort) {
-  let result = [...items];
-  if (query.trim()) {
-    const lower = query.toLowerCase();
-    result = result.filter((item) => item.title.toLowerCase().includes(lower));
-  }
-  switch (sort) {
-    case "date_asc":
-      result.sort((a, b) => a.date.localeCompare(b.date));
-      break;
-    case "name_asc":
-      result.sort((a, b) => a.title.localeCompare(b.title));
-      break;
-    case "name_desc":
-      result.sort((a, b) => b.title.localeCompare(a.title));
-      break;
-    default:
-      result.sort((a, b) => b.date.localeCompare(a.date));
-  }
-  return result;
-}
+import { applyFilters } from "../../../utils/listFilters";
+import { useListSearchParams } from "../../../hooks/useListSearchParams";
 
 function SkeletonItem() {
   return (
@@ -44,35 +25,16 @@ function SkeletonItem() {
 export default function ShoppingLists() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [confirmItem, setConfirmItem] = useState(null);
 
   const { items, isLoading, hasError } = useSelector((state) => state.lists);
-  const query = searchParams.get("q") ?? "";
-  const sort = searchParams.get("sort") ?? "date_desc";
+  const { query, sort, setQuery, setSort } = useListSearchParams();
 
   useEffect(() => {
     dispatch(fetchLists());
   }, [dispatch]);
-
-  const setQuery = (value) => {
-    setSearchParams((prev) => {
-      const next = new URLSearchParams(prev);
-      if (value) next.set("q", value);
-      else next.delete("q");
-      return next;
-    });
-  };
-
-  const setSort = (value) => {
-    setSearchParams((prev) => {
-      const next = new URLSearchParams(prev);
-      next.set("sort", value);
-      return next;
-    });
-  };
 
   const filteredItems = useMemo(
     () => applyFilters(items, query, sort),
@@ -80,7 +42,6 @@ export default function ShoppingLists() {
   );
 
   const handleCreateList = (listData) => {
-    console.log("create list:", listData);
     dispatch(createList(listData));
   };
 
