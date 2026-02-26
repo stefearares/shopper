@@ -1,21 +1,10 @@
-import { useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import style from "./ShoppingLists.module.css";
 import Search from "../../Search/Search";
 import { ConfirmModal, FilterModal, CreateListModal } from "../../Modals/index";
-
-const sampleItems = [
-  { id: 1, title: "Groceries for week", date: "2026-02-24" },
-  { id: 2, title: "Hardware store run", date: "2026-02-22" },
-  { id: 3, title: "Birthday party supplies", date: "2026-02-20" },
-  { id: 4, title: "Groceries for week", date: "2026-02-24" },
-  { id: 5, title: "Hardware store run", date: "2026-02-22" },
-  { id: 6, title: "Birthday party supplies", date: "2026-02-20" },
-  { id: 7, title: "Groceries for week", date: "2026-02-24" },
-  { id: 8, title: "Hardware store run", date: "2026-02-22" },
-  { id: 9, title: "Birthday party supplies", date: "2026-02-20" },
-];
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchLists, createList, deleteList } from "../../../store/listsSlice";
 function applyFilters(items, query, sort) {
   let result = [...items];
   if (query.trim()) {
@@ -54,17 +43,19 @@ function SkeletonItem() {
 
 export default function ShoppingLists() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [confirmItem, setConfirmItem] = useState(null);
 
-  // These will be driven by Redux
-  const isLoading = false;
-  const hasError = false;
-
+  const { items, isLoading, hasError } = useSelector((state) => state.lists);
   const query = searchParams.get("q") ?? "";
   const sort = searchParams.get("sort") ?? "date_desc";
+
+  useEffect(() => {
+    dispatch(fetchLists());
+  }, [dispatch]);
 
   const setQuery = (value) => {
     setSearchParams((prev) => {
@@ -84,18 +75,18 @@ export default function ShoppingLists() {
   };
 
   const filteredItems = useMemo(
-    () => applyFilters(sampleItems, query, sort),
-    [query, sort],
+    () => applyFilters(items, query, sort),
+    [items, query, sort],
   );
 
   const handleCreateList = (listData) => {
     console.log("create list:", listData);
-    // Will be wired to Redux
+    dispatch(createList(listData));
   };
 
   const handleDelete = (item) => setConfirmItem(item);
   const confirmDelete = () => {
-    console.log("delete list:", confirmItem?.id);
+    dispatch(deleteList(confirmItem.id));
     setConfirmItem(null);
   };
 
@@ -107,7 +98,7 @@ export default function ShoppingLists() {
           <button
             className={style.retryBtn}
             type="button"
-            onClick={() => window.location.reload()}
+            onClick={() => dispatch(fetchLists())}
           >
             Try again
           </button>

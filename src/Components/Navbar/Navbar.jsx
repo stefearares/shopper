@@ -80,11 +80,11 @@ export default function Navbar() {
         {isAuthenticated && (
           <NavLink
             to="/lists"
-            aria-label="List"
+            aria-label="My Lists"
             className={style.link}
             onClick={closeMenu}
           >
-            List
+            My Lists
           </NavLink>
         )}
         <NavLink
