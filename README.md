@@ -47,7 +47,11 @@ The application follows a modular, state based architecture and predictable data
 - **State**: Redux Toolkit, React-Redux
 - **Routing**: React Router 7
 
-**This project uses [Madge](https://www.npmjs.com/package/madge) for circular dependency checking.**
+**This project uses [Madge](https://www.npmjs.com/package/madge) for circular dependency checking:**
+
+```bash
+npx madge --circular --extensions js,jsx src/
+```
 
 ## Setup
 
