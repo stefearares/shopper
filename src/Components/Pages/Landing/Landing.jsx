@@ -2,10 +2,13 @@ import { useDispatch } from "react-redux";
 import { openModal } from "../../../store/uiSlice";
 import style from "./Landing.module.css";
 import heroImg from "../../../assets/images/Hero-Landing-Page.png";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../../hooks/useAuth";
 
 export default function Landing() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   return (
     <div className={style.landingWrapper}>
       <main className={style.landingRightSide}>
@@ -25,12 +28,21 @@ export default function Landing() {
           >
             List URL
           </button>
-          <button
-            aria-label="Log in or create a free account"
-            onClick={() => dispatch(openModal("auth"))}
-          >
-            Join / Login
-          </button>
+          {isAuthenticated ? (
+            <button
+              aria-label="Go to your lists"
+              onClick={() => navigate("/lists")}
+            >
+              My Lists
+            </button>
+          ) : (
+            <button
+              aria-label="Log in or create a free account"
+              onClick={() => dispatch(openModal("auth"))}
+            >
+              Join / Login
+            </button>
+          )}
         </div>
       </main>
       <aside
